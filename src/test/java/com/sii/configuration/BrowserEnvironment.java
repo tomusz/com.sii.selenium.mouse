@@ -37,7 +37,8 @@ public class BrowserEnvironment {
             case "chrome":
                 ChromeOptions chromeOptions = new ChromeOptions();
                 WebDriverManager.chromedriver().setup();
-                chromeOptions.addArguments("--start-maximised");
+                chromeOptions.addArguments("--start-maximised")
+                        .addArguments("--remote-allow-origins=*");
                 driver = new ChromeDriver(chromeOptions);
                 driver.get(System.getProperty(ENVIRONMENT_URL));
                 break;

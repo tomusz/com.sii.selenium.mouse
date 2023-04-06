@@ -14,7 +14,9 @@ public class TopNavigationTest extends BaseTest {
     public void childForNavigationElementShouldBeVisible() {
         TopMenuPage topMenuPage = new TopMenuPage(driver);
         topMenuPage.moveMoseToClothesCategory()
+                .waitForClothesSubcategory()
                 .moveMoseToAccessoriesCategory()
+                .waitForAccessoriesSubcategory()
                 .moveMoseToArtCategory();
     }
 

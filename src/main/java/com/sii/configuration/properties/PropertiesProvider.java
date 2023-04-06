@@ -8,11 +8,16 @@ import java.util.function.Function;
 
 public class PropertiesProvider {
 
-    private static final String PATH_TO_PROPERTIES = "properties";
-    private static final String PATH_TO_MSG_PROPERTIES = PATH_TO_PROPERTIES + "/messages";
+    private static final String PATH_TO_PROPERTIES = "properties/";
+    private static final String PATH_TO_MSG_PROPERTIES = PATH_TO_PROPERTIES + "messages/";
+
+    private static Properties msgProperties = null;
 
     public static Properties getInfoMsgProperties() {
-        return getPropertiesFromFile.apply(PATH_TO_MSG_PROPERTIES + "info.properties");
+        if (msgProperties == null) {
+            msgProperties = getPropertiesFromFile.apply(PATH_TO_MSG_PROPERTIES + "info.properties");
+        }
+        return msgProperties;
     }
 
     private static Function<String, Properties> getPropertiesFromFile = address -> {

@@ -5,6 +5,7 @@ import com.sii.configuration.WebListener;
 import com.sii.configuration.keys.PropertiesKeys;
 import com.sii.configuration.properties.PropertiesProvider;
 import lombok.extern.slf4j.Slf4j;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Coordinates;
@@ -40,6 +41,7 @@ public class BasePage {
     public void clickOnButton(WebElement element) {
         String webElementText = element.getText();
         waitElementToBeClickable(element);
+        highLiterMethod(element);
         element.click();
         log.info(String.format(msgProperties.get(ELEMENT_CLICKED_KEY).toString(), webElementText));
     }
@@ -50,7 +52,7 @@ public class BasePage {
         wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
-    private void waitForElementToBeVisible(WebElement element) {
+    protected void waitForElementToBeVisible(WebElement element) {
         log.info(String.format(msgProperties.getProperty(WAIT_FOR_ELEMENT_TO_BE_VISIBLE_KEY),
                 element.getText()));
         wait.until(ExpectedConditions.visibilityOf(element));
@@ -58,6 +60,7 @@ public class BasePage {
 
     public void mouseHover(WebElement element) {
         waitForElementToBeVisible(element);
+        highLiterMethod(element);
         eventFiringMouse = new EventFiringMouse(driver, webListener);
         Locatable item = (Locatable) element;
         Coordinates coordinates = item.getCoordinates();
@@ -74,5 +77,10 @@ public class BasePage {
         eventFiringMouse.click(coordinates);
         log.info(String.format(msgProperties.getProperty(ELEMENT_CLICKED_KEY),
                 element.getText()));
+    }
+
+    private void highLiterMethod(WebElement element) {
+        JavascriptExecutor js = ((JavascriptExecutor) driver);
+        js.executeScript("arguments[0].setAttribute('style','background: yellow; border: 5px solid blue;')", element);
     }
 }

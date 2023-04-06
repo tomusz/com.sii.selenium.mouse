@@ -10,14 +10,22 @@ public class TopMenuPage extends BasePage {
         super(driver);
     }
 
-    @FindBy(xpath = "//ul[@id='top-menu']/li[1]")
+    @FindBy(xpath = "//ul[@id='top-menu']/li[1]//a")
     private WebElement clothesNavigationBtn;
 
-    @FindBy(xpath = "//ul[@id='top-menu']/li[2]")
+    @FindBy(xpath = "//ul[@id='top-menu']/li[2]//a")
     private WebElement accessoriesNavigationBtn;
 
-    @FindBy(xpath = "//ul[@id='top-menu']/li[3]")
+    @FindBy(xpath = "//ul[@id='top-menu']/li[3]//a")
     private WebElement artNavigationBtn;
+
+    @FindBy(xpath = "(//ul[@class='top-menu'])[2]//li[1]")
+    private WebElement clothesSubcategory;
+
+    @FindBy(xpath = "(//ul[@class='top-menu'])[3]//li[1]")
+    private WebElement accessoriesSubcategory;
+
+
 
     public TopMenuPage clickOnWomanCategory() {
         clickOnButton(clothesNavigationBtn);
@@ -46,6 +54,16 @@ public class TopMenuPage extends BasePage {
 
     public TopMenuPage moveMoseToArtCategory() {
         mouseHover(artNavigationBtn);
+        return this;
+    }
+
+    public TopMenuPage waitForClothesSubcategory() {
+        waitForElementToBeVisible(clothesSubcategory);
+        return this;
+    }
+
+    public TopMenuPage waitForAccessoriesSubcategory() {
+        waitForElementToBeVisible(accessoriesSubcategory);
         return this;
     }
 }
