@@ -2,7 +2,6 @@ package com.sii.configuration.objects;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,18 +12,9 @@ import java.util.Map;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Configuration {
+public class ConfigUrls {
 
     Map<String, Object> properties = new LinkedHashMap<>();
-
-    @JsonProperty("browser")
-   private ConfigBrowser configBrowser;
-
-    @JsonProperty("environment")
-    private ConfigEnvironmentList environments;
-
-    @JsonProperty("urls")
-    private ConfigUrls urls;
 
     @JsonAnySetter
     void setProperties(String key, Object value) {
@@ -35,7 +25,5 @@ public class Configuration {
     public Map<String, Object> getProperties() {
         return properties;
     }
-
-
 
 }
