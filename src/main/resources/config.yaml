@@ -1,0 +1,21 @@
+defaultBrowser: chrome
+defaultEnvironment: test
+
+browser:
+  screenshots: true
+  headless: true
+  webElement:
+    timeout: 60
+  environment: int
+#  environment: test
+#  name: firefox
+
+environment:
+    test:
+      envName: test
+      title: Documentation
+      appUrl: https://logback.qos.ch/documentation.html
+    int:
+      envName: int
+      title: WebDriver | Selenium
+      appUrl: https://www.selenium.dev/documentation/en/webdriver/
